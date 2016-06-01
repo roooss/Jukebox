@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device.width, initial-scale=1.0" />
+
+	<title>This is the site title.</title>
+
+	<link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+	<div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
+  		<button class="menu-icon" type="button" data-toggle></button>
+  		<div class="title-bar-title">Jukebox</div>
+	</div>
+	<div class="top-bar" id="main-menu">
+		
+		<div class="top-bar-left">
+	    	<ul class="dropdown menu" data-dropdown-menu>
+	    	<li class="menu-text">Jukebox</li>
+	    	</ul>
+		</div>
+		<div class="top-bar-right">
+			<ul class="large-left menu vertical medium-horizontal expanded" data-responsive-menu="drilldown medium-dropdown">
+				<li><a href="/">home</a></li>
+				{{#if user}}
+		    		<li><a href="/jukebox">find jukebox</a></li>
+		    		<li><a href="/jukebox/create">create jukebox</a></li>
+		    	{{else}}
+	    		{{/if}}
+			</ul>
+
+			<ul class="large-right menu vertical medium-horizontal expanded" data-responsive-menu="drilldown medium-dropdown">
+				{{#if user}}
+		    		<li class="has-submenu">
+			    		<a href="#">username</a>
+			    		<ul class="submenu menu vertical" data-submenu>
+			    			<li><a href="/users/account">account</a></li>
+			    			<li><a href="/users/logout">logout</a></li>
+			    		</ul>
+		    		</li>
+		    	{{else}}
+		    		<li><a href="/users/register">register</a></li>
+		    		<li><a href="/users/login">login</a></li>
+	    		{{/if}}
+			</ul>
+	  	</div>
+	</div>
+	
+	<div>
+
+    	<hr />
+
+    	{{#if success_msg}}
+    		<div class="row">
+	        	<div class="large-12 medium-12 small-12 large-centered columns">
+	        		<div class="success callout">
+	        			<p class="success">{{success_msg}}</p>
+	        		</div>
+	        	</div>
+        	</div>
+    	{{/if}}
+
+    	{{#if error_msg}}
+    		<div class="row">
+	        	<div class="large-12 medium-12 small-12 large-centered columns">
+	        		<div class="alert callout">
+	        			<p class="alert">{{error_msg}}</p>
+	        		</div>
+	        	</div>
+        	</div>
+    	{{/if}}
+
+    	{{#if error}}
+    		<div class="row">
+	        	<div class="large-12 medium-12 small-12 large-centered columns">
+	        		<div class="alert callout">
+	        			<p class="alert">{{error}}</p>
+	        		</div>
+	        	</div>
+        	</div>
+    	{{/if}}
+    	
+    	{{#if message}}
+    		<div class="row">
+	        	<div class="large-12 medium-12 small-12 large-centered columns">
+	        		<div class="alert callout">
+	        			<p class="alert">{{message}}</p>
+	        		</div>
+	        	</div>
+        	</div>
+    	{{/if}}
+
+    	{{{body}}}
+	</div>
+    
+	<script src="/js/jquery.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="/js/what-input.js"></script>
+    <script src="/js/foundation.js"></script>
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/handlebars.js"></script>
+    <script src="/js/templates.js"></script>
+    <script src="/js/socket.io.js"></script>
+
+    <script type="text/javascript">
+    	$(document).foundation();
+    </script>
+
+    {{{renderJS js}}}
+</body>
+</html>

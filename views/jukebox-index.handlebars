@@ -1,0 +1,51 @@
+<div class="row">
+	<div class="large-12 medium-12 small-12 large-centered columns">
+		<h5>Join a Jukebox</h5>
+		<p>Search and join one of the available public and private Jukeboxes.</p>
+		<hr />
+    </div>
+	<div clas="row">
+	    <div class="large-12 medium-12 small-12 columns">
+	     	<h5>Live Jukeboxes</h5>
+	     	{{#if jukeboxes}}
+		     	<table class="stacked hover large-12 medium-12 small-12">
+					<thead>
+		  				<tr>
+		  					<th>Name</th>
+		  					<th>Description</th>
+		  					<th>Now Playing</th>
+		  					<th>Listeners</th>
+		  					<th>Private</th>
+		  				</tr>
+		  			</thead>
+		  			<tbody id="jukeoxList">
+		  				{{#each jukeboxes}}
+			  				<tr>
+			  					<td><a href="/jukebox/view/{{id}}">{{name}}</a></td>
+			  					<td>{{description}}</td>
+			  					<td>Some song - Some artist</td>
+			  					<td>5</td>
+			  					<td>{{#if isPublic}}No{{else}}Yes{{/if}}</td>
+			  				</tr>
+		  				{{/each}}
+		  			</tbody>
+		  		</table>
+		  		{{#ifCond pagination.pageCount '>' 1}}
+			  		<ul class="pagination text-center" role="navigation" aria-label="Pagination">
+			  			{{#paginate pagination type="previous"}}
+			  				<li {{#if disabled}}class="pagination-previous disabled"{{else}}class="pagination-previous"{{/if}}><a href="/{{n}}" aria-label="Previous page">Previous</a></li>
+			  			{{/paginate}}
+
+			  			{{#paginate pagination type="middle" limit="7"}}
+			  				<li {{#if active}}class="current"{{/if}}>{{#if active}}<span class="show-for-sr">You're on page</span>{{n}}{{else}}<a href="/{{n}}">{{n}}</a>{{/if}}</li>
+			  			{{/paginate}}
+
+			  			{{#paginate pagination type="next"}}
+			  				<li {{#if disabled}}class="pagination-next disabled"{{else}}class="pagination-next"{{/if}}><a href="/{{n}}" aria-label="Next page">Next</a></li>
+						{{/paginate}}
+					</ul>
+				{{/ifCond}}
+			{{/if}}
+	  	</div>
+	</div>
+</div>

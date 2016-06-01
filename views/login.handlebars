@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="large-4 medium-8 small-12 large-centered columns">
+		<h5>Login</h5>
+    </div>
+    <form action="/users/login" method="POST">
+    	<div class="row">
+		    <div class="large-4 medium-8 small-12 large-centered columns">
+		        <label>Email Address</label>
+		        <input id="username" name="username" type="email" placeholder="name@domain.com" />
+		    </div>
+		</div>
+		<div class="row">
+			<div class="large-4 medium-8 small-12 large-centered columns">
+		        <label>Password</label>
+				<input id="password" name="password" type="password" />
+			</div>
+		</div>
+		<div class="row">
+		    <div class="large-4 medium-8 small-12 large-centered columns">
+		       	<div class="expanded stacked-for-small button-group">
+		      		<button type="success" class="button">Login</button>
+  				 	<button type="reset" class="button">Forgotten Password?</button>
+				</div>
+		    </div>
+		</div>
+		<div class="row">
+		    <div class="large-4 medium-8 small-12 large-centered columns">
+		        <hr />
+		       	<div class="stacked button-group">
+  				 	<a href="/users/facebook" class="button">Facebook</a>
+  					<a href="/users/spotify" class="success button">Spotify</a>
+  					<a href="#" class="alert button">Google+</a>
+				</div>
+	        </div>
+	    </div>
+	</form>
+</div>

@@ -1,0 +1,65 @@
+<div class="row">
+	<div class="large-4 medium-8 small-12 large-centered columns">
+       	<h5>Create a Jukebox</h5>
+    </div>
+    {{#if errors}}
+       	<div class="large-12 medium-12 small-12 large-centered columns">
+       		<div class="alert callout">
+       			<ul>
+	        		{{#each errors}}
+		        	    <li class="alert">{{msg}}</li>
+		        	{{/each}}
+	        	</ul>
+	        </div>
+       	</div>
+    {{/if}}
+    <form action="/jukebox/create" method="POST">
+    	<div class="row">
+		    <div class="large-4 medium-8 small-12 large-centered columns">
+		        <label>Jukebox name</label>
+		        <input id="jukeboxName" name="jukeboxName" type="text" placeholder="Ross' Jukebox" autocomplete="off" />
+		    </div>
+		</div>
+		<div class="row">
+		 	<div class="large-4 medium-8 small-12 large-centered columns">
+		  		<label>Is this a public Jukebox?</label>
+		  		<div class="switch">
+  					<input class="switch-input" id="isPublic" type="checkbox" name="isPublic">
+  					<label class="switch-paddle" for="isPublic">
+	    				<span class="show-for-sr">Is this a public Jukebox?</span>
+	    				<span class="switch-active" aria-hidden="true">Yes</span>
+    					<span class="switch-inactive" aria-hidden="true">No</span>
+  					</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+         	<div class="large-4 medium-8 small-12 large-centered columns">
+          		<label>Jukebox description</label>
+          		<textarea id="description" name="description" rows="4" placeholder="Describe the kind of music you will or would like to hear in this Jukebox." autocomplete="off" ></textarea>
+          	</div>
+        </div>
+        <div class="row">
+        	<div class="large-4 medium-8 small-12 large-centered columns">
+           		<label>Who can queue music?</label>
+           		<input type="radio" name="queueLevel" value="0" id="queueLevelAll"><label for="queueLevelAll">All Listeners</label>
+           		<input type="radio" name="queueLevel" value="1" id="queueLevelOnlyMe"><label for="queueLevelOnlyMe">Only me</label>
+           		<input type="radio" name="queueLevel" value="2" id="queueLevelAllowedOnly"><label for="queueLevelAllowedOnly">Only those I allow</label>
+        	</div>
+        </div>
+        <div class="row">
+			<div class="large-4 medium-8 small-12 large-centered columns">
+				<label>Jukebox password</label>
+		        <input id="password" name="password" type="password" autocomplete="off" />
+		    </div>
+		</div>
+		<div class="row">
+		    <div class="large-4 medium-8 small-12 large-centered columns">
+		       	<div class="expanded stacked-for-small button-group">
+		       		<button type="submit" class="success button">Create Jukebox</button>
+  				 	<button type="reset" class="button">Clear form</button>
+				</div>
+		    </div>
+		</div>
+	</form>
+</div>

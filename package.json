@@ -1,0 +1,47 @@
+{
+  "name": "auth-test",
+  "version": "1.0.0",
+  "description": "Authentication test application",
+  "main": "app.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "author": "Ross Nesbitt",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "express-messages": "^1.0.1",
+    "express-session": "^1.13.0",
+    "express-validator": "^2.20.5",
+    "flash": "^1.1.0",
+    "googleapis": "^7.1.0",
+    "handlebars": "^4.0.5",
+    "handlebars-paginate": "^0.1.0",
+    "jquery-ui": "^1.10.5",
+    "lodash": "^4.13.1",
+    "mongodb": "^2.1.20",
+    "mongoose": "^4.4.19",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-http": "^0.3.0",
+    "passport-local": "^1.0.0",
+    "passport-spotify": "^0.3.0",
+    "serve-favicon": "~2.3.0",
+    "socket.io": "^1.4.6"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "foundation-sites": "^6.1.2",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.1",
+    "gulp-sass": "^2.2.0",
+    "gulp-uglify": "^1.5.2",
+    "npm-run-all": "^1.5.1"
+  }
+}

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device.width, initial-scale=1.0" />
+
+	<title>This is the site title.</title>
+
+	<link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+	<div class="row">
+      <div class="large-12 large-centered columns">
+        <h1>The Jukebox.</h1>
+      </div>
+    </div> 
+
+    <div class="row">
+    <div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit>
+  <ul class="orbit-container">
+    <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
+    <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+    <li class="is-active orbit-slide">
+      <img class="orbit-image" src="http://foundation.zurb.com/sites/docs/assets/img/orbit/02.jpg" alt="Space">
+      <figcaption class="orbit-caption">Space, the final frontier.</figcaption>
+    </li>
+    <li class="orbit-slide">
+        <div>
+            <h3 class="text-center">2: You can also throw some text in here!</h3>
+            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde harum rem, beatae ipsa consectetur quisquam. Rerum ratione, delectus atque tempore sed, suscipit ullam, beatae distinctio cupiditate ipsam eligendi tempora expedita.</p>
+            <h3 class="text-center">This Orbit slider does not use animations.</h3>
+        </div>
+    </li>
+    <li class="orbit-slide">
+      <img class="orbit-image" src="http://foundation.zurb.com/sites/docs/assets/img/orbit/01.jpg" alt="Space">
+      <figcaption class="orbit-caption">Lets Rocket!</figcaption>
+    </li>
+    <li class="orbit-slide">
+      <img class="orbit-image" src="http://foundation.zurb.com/sites/docs/assets/img/orbit/03.jpg" alt="Space">
+      <figcaption class="orbit-caption">Encapsulating</figcaption>
+    </li>
+    <li class="orbit-slide">
+      <img class="orbit-image" src="http://foundation.zurb.com/sites/docs/assets/img/orbit/04.jpg" alt="Space">
+      <figcaption class="orbit-caption">Outta This World</figcaption>
+    </li>
+  </ul>
+  <nav class="orbit-bullets">
+    <button class="is-active" data-slide="0"><span class="show-for-sr">First slide details.</span><span class="show-for-sr">Current Slide</span></button>
+    <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
+    <button data-slide="2"><span class="show-for-sr">Third slide details.</span></button>
+    <button data-slide="3"><span class="show-for-sr">Fourth slide details.</span></button>
+  </nav>
+</div>
+    </div>
+
+    <div class="row" data-equalizer>
+	    <div class="large-4 medium-4 columns panel" data-equalizer-watch>
+	          <h5>Create a Jukebox</h5>
+	          <p>With Jukebox you can create a playlist that you or anybody can add songs or videos to from popular sources like Youtube and spotify.</p>
+	          <a href="#" class="small button">Go to Foundation Docs</a>
+	    </div>
+
+	    <div class="large-4 medium-4 columns panel" data-equalizer-watch>
+	          <h5>Listen to a Jukebox</h5>
+	          <p>You can select from a list of live and public Jukeboxes playing right now.</p>
+	          <a href="#" class="small button">Go to Foundation Docs</a>
+	    </div>
+
+	    <div class="large-4 medium-4 columns panel" data-equalizer-watch>
+	          <h5>Play a song on the Jukebox</h5>
+	          <p>Once you join a live Jukebox you can join in by queing up one of your favourite songs.</p>
+	          <a href="#" class="small button">Go to Foundation Docs</a>
+	    </div>
+    </div>
+
+<hr />
+
+	<div class="row">
+		<div class="large-12 medium-12 small-12 large-centered columns">
+        	<h5>Join a Jukebox</h5>
+        	<p>Search and join one of the available public and private Jukeboxes.</p>
+        	<hr />
+        </div>
+	    <div clas="row">
+	        <div class="large-12 medium-12 small-12 columns">
+	        	<h5>Live Jukeboxes</h5>
+	        	<table class="stacked hover large-12 medium-12 small-12">
+	  				<thead>
+	  					<tr>
+	  						<th>Name</th>
+	  						<th>Description</th>
+	  						<th>Now Playing</th>
+	  						<th>Listeners</th>
+	  						<th>Private</th>
+	  					</tr>
+	  				</thead>
+	  				<tbody id="songQueue">
+	  					<tr>
+	  						<td>Jukebox A</td>
+	  						<td>This is a Jukebox description</td>
+	  						<td>Some song - Some artist</td>
+	  						<td>5</td>
+	  						<td>X</td>
+	  					</tr>
+	  					<tr>
+	  						<td>Jukebox B</td>
+	  						<td>This is another Jukebox description</td>
+	  						<td>Some different song - Some band</td>
+	  						<td>5</td>
+	  						<td>X</td>
+	  					</tr>
+	  					<tr>
+	  						<td>Jukebox A</td>
+	  						<td>This is a Jukebox description</td>
+	  						<td>Some song - Some artist</td>
+	  						<td>5</td>
+	  						<td>X</td>
+	  					</tr>
+	  					<tr>
+	  						<td>Jukebox B</td>
+	  						<td>This is another Jukebox description</td>
+	  						<td>Some different song - Some band</td>
+	  						<td>5</td>
+	  						<td>X</td>
+	  					</tr>
+	  				</tbody>
+	  			</table>
+	  			<ul class="pagination text-center" role="navigation" aria-label="Pagination">
+  					<li class="pagination-previous disabled">Previous</li>
+  					<li class="current"><span class="show-for-sr">You're on page</span> 1</li>
+  					<li><a href="#" aria-label="Page 2">2</a></li>
+  					<li><a href="#" aria-label="Page 3">3</a></li>
+  					<li><a href="#" aria-label="Page 4">4</a></li>
+				    <li class="ellipsis"></li>
+				  	<li><a href="#" aria-label="Page 12">12</a></li>
+				  	<li><a href="#" aria-label="Page 13">13</a></li>
+				  	<li class="pagination-next"><a href="#" aria-label="Next page">Next</a></li>
+				</ul>
+	  		</div>
+	  	</div>
+  	</div>
+
+<hr />
+
+	<div class="row">
+		<div class="large-12 medium-12 small-12 large-centered columns">
+        	<h5>Jukebox room.</h5>
+        	<p>Describe the kind of music you will or would like to hear in this Jukebox.</p>
+        	<hr />
+        </div>
+
+        <div clas="row">
+        	<div class="large-6 medium-12 small-12 columns">
+        		<h5>Song queue</h5>
+        		<table class="stacked hover">
+  					<thead>
+  						<tr>
+  							<th>up next...</th>
+  						</tr>
+  					</thead>
+  					<tbody id="songQueue">
+  						<tr>
+  							<td>
+  								<div class="media-object">
+									<div class="media-object-section">
+    									<div class="thumbnail">
+      										<img src= "http://foundation.zurb.com/sites/docs/assets/img/media-object/avatar-2.jpg">
+    									</div>
+  									</div>
+  									<div class="media-object-section">
+    									<h4>System of a down - Toxicity 3:34</h4>
+  									</div>
+  								</div>
+  							</td>
+  						</tr>
+  						<tr>
+  							<td>
+  								<div class="media-object">
+									<div class="media-object-section">
+    									<div class="thumbnail">
+      										<img src= "http://foundation.zurb.com/sites/docs/assets/img/media-object/avatar-2.jpg">
+    									</div>
+  									</div>
+  									<div class="media-object-section">
+    									<h4>System of a down - Toxicity 3:34</h4>
+  									</div>
+  								</div>
+  							</td>
+  						</tr>
+  						<tr>
+  							<td>
+  								<div class="media-object">
+									<div class="media-object-section">
+    									<div class="thumbnail">
+      										<img src= "http://foundation.zurb.com/sites/docs/assets/img/media-object/avatar-2.jpg">
+    									</div>
+  									</div>
+  									<div class="media-object-section">
+    									<h4>System of a down - Toxicity 3:34</h4>
+  									</div>
+  								</div>
+  							</td>
+  						</tr>
+  						<tr>
+  							<td>
+  								<div class="media-object">
+									<div class="media-object-section">
+    									<div class="thumbnail">
+      										<img src= "http://foundation.zurb.com/sites/docs/assets/img/media-object/avatar-2.jpg">
+    									</div>
+  									</div>
+  									<div class="media-object-section">
+    									<h4>System of a down - Toxicity 3:34</h4>
+  									</div>
+  								</div>
+  							</td>
+  						</tr>
+  					</tbody>
+  				</table>
+        	</div>
+        	<div class="large-6 medium-12 small-12 large-centered columns">
+        		<div class="row">
+        			<h5>Song search</h5>
+        			<hr />
+        			<div class="large-12 medium-12 small-12 large-centered columns">
+		            	<div class="input-group ui-widget">
+		            		<span class="input-group-label">$</span>
+  							<input id="searchBox" class="input-group-field" type="text">
+  							<div class="input-group-button">
+    							<input type="submit" class="button" value="Search">
+  							</div>
+						</div>
+					</div>
+		        	<div class="autocomplete-list-items">
+		        	</div>
+		        	<hr />
+        		</div>
+        		<div class="row">
+        			<h5>Currently playing</h5>
+        			<hr />
+        			<div class="media-object">
+						<div class="media-object-section">
+    						<div class="thumbnail">
+      							<img src= "http://foundation.zurb.com/sites/docs/assets/img/media-object/avatar-2.jpg">
+    						</div>
+  						</div>
+  						<div class="media-object-section">
+    						<h4>System of a down - Toxicity</h4>
+    						<p>2:16 / 3:34</p>
+    						<p>play | pause</p>
+  						</div>
+  					</div>
+        		</div>
+        		<div class="row">
+		        <div class="large-4 medium-8 small-12 large-centered columns">
+		           	<div class="expanded stacked-for-small button-group">
+		           		<button type="success" class="success button">Play</button>
+  					 	<button type="reset" class="button">Skip</button>
+  					 	<button type="reset" class="alert button">Stop</button>
+					</div>
+		        </div>
+		    </div>
+        	</div>
+        </div>
+	</div>
+
+<hr />
+
+	<div class="row">
+		<div class="large-4 medium-8 small-12 large-centered columns">
+        	<h5>Create a Jukebox</h5>
+        </div>
+    	<form>
+    		<div class="row">
+		        <div class="large-4 medium-8 small-12 large-centered columns">
+		            <label>Jukebox name</label>
+		            <input type="text" placeholder="Ross' Jukebox" />
+		        </div>
+		    </div>
+		    <div class="row">
+		    	<div class="large-4 medium-8 small-12 large-centered columns">
+		    		<label>Is this a public Jukebox?</label>
+		    		<div class="switch">
+  						<input class="switch-input" id="exampleSwitch" type="checkbox" name="exampleSwitch">
+  						<label class="switch-paddle" for="exampleSwitch">
+	    					<span class="show-for-sr">Is this a public Jukebox?</span>
+	    					<span class="switch-active" aria-hidden="true">Yes</span>
+    						<span class="switch-inactive" aria-hidden="true">No</span>
+  						</label>
+					</div>
+				</div>
+		    </div>
+		    <div class="row">
+            	<div class="large-4 medium-8 small-12 large-centered columns">
+              		<label>Jukebox description</label>
+              		<textarea rows="4" placeholder="Describe the kind of music you will or would like to hear in this Jukebox."></textarea>
+            	</div>
+          	</div>
+          	<div class="row">
+          		<div class="large-4 medium-8 small-12 large-centered columns">
+              		<label>Who can queue music?</label>
+              		<input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">Only me</label>
+              		<input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">All Listeners</label>
+              		<input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">Only those I allow</label>
+            	</div>
+          	</div>
+          	<div class="row">
+		        <div class="large-4 medium-8 small-12 large-centered columns">
+		            <label>Jukebox password</label>
+		            <input type="password" />
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="large-4 medium-8 small-12 large-centered columns">
+		           	<div class="expanded stacked-for-small button-group">
+		           		<button type="success" class="success button">Create Jukebox</button>
+  					 	<button type="reset" class="button">Clear form</button>
+					</div>
+		        </div>
+		    </div>
+		</form>
+	</div>
+
+<hr />
+
+	<div class="row">
+		<div class="large-4 medium-8 small-12 large-centered columns">
+        	<h5>Login</h5>
+        </div>
+    	<form>
+    		<div class="row">
+		        <div class="large-4 medium-8 small-12 large-centered columns">
+		            <label>Email Address</label>
+		            <input type="email" placeholder="name@domain.com" />
+		        </div>
+		    </div>
+		    <div class="row">
+				<div class="large-4 medium-8 small-12 large-centered columns">
+		            <label>Password</label>
+					<input type="password" />
+				</div>
+		    </div>
+		    <div class="row">
+		        <div class="large-4 medium-8 small-12 large-centered columns">
+		           	<div class="expanded stacked-for-small button-group">
+		           		<button type="success" class="button">Login</button>
+  					 	<button type="reset" class="button">Forgotten Password?</button>
+					</div>
+		        </div>
+		    </div>
+			<div class="row">
+		            <div class="large-4 medium-8 small-12 large-centered columns">
+		            <hr />
+		            	<div class="stacked button-group">
+  						 	<a href="#" class="button">Facebook</a>
+  							<a href="#" class="success button">Spotify</a>
+  							<a href="#" class="alert button">Google+</a>
+						</div>
+		            </div>
+		          </div>
+		</form>
+	</div>
+
+<hr />
+    <div class="row">
+
+    	<div class="large-4 medium-8 small-12 large-centered columns">
+        	<h5>Register</h5>
+        </div>
+    	<form>
+		          <div class="row">
+		            <div class="large-4 medium-8 small-12 large-centered columns">
+		              <label>Email Address</label>
+		              <input type="email" placeholder="name@domain.com" />
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="large-4 medium-8 small-12 large-centered columns">
+		              <label>First Name</label>
+		              <input type="text" placeholder="Dave" />
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="large-4 medium-8 small-12 large-centered columns">
+		              <label>Last Name</label>
+		              <input type="text" placeholder="Smith" />
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="large-4 medium-8 small-12 large-centered columns">
+		              <label>Gender</label>
+		              <select>
+		                <option value="male">Male</option>
+		                <option value="female">Female</option>
+		              </select>
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="large-4 medium-8 small-12 large-centered columns">
+		              <label>Date of birth</label>
+		              <input type="date" />
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="large-4 medium-8 small-12 large-centered columns">
+		              <label>Password</label>
+		              <input type="password" />
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="large-4 medium-8 small-12 large-centered columns">
+		              <label>Repeat password</label>
+		              <input type="password" />
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="large-4 medium-8 small-12 large-centered columns">
+		            	<div class="expanded stacked-for-small button-group">
+  							<button type="success" class="success button">Register</button>
+  						 	<button type="reset" class="alert button">Reset</button>
+						</div>
+		            </div>
+		          </div>
+		        </div>
+	        </div>
+        </form>
+    </div>
+
+    <script id="song-detail-template" type="text/x-handlebars-template">
+  		<div class="media-object song-detail-item">
+			<div class="media-object-section">
+    			<div class="thumbnail">
+      				<img src= "{{albumArt}}">
+    			</div>
+  			</div>
+  			<div class="media-object-section">
+    			<h4>{{songArtist}} - {{songTitle}} {{songDuration}}</h4>
+  			</div>
+  		</div>
+	</script>
+
+    <!-- build:js(app) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/what-input/what-input.js"></script>
+    <script src="/bower_components/foundation-sites/dist/foundation.js"></script>
+    <script src="/bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="/bower_components/handlebars/handlebars.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+ 
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

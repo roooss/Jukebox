@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="large-6 medium-12 small-12 columns">
+    <h5>{{model.name}}</h5>
+    <p>{{model.description}}</p>
+    
+  </div>
+  <div class="large-6 medium-12 small-12 columns">
+    <h5>Number of listeners: {{model.numberOfListeners}}</h5>
+  </div>
+  <hr />
+
+  <div clas="row">
+
+    <div class="large-6 medium-12 small-12 columns">
+      <div class="row">
+        <h5>Song search</h5>
+        <hr />
+        <div class="large-12 medium-12 small-12 large-centered columns">
+          <div class="input-group ui-widget">
+            <span class="input-group-label">$</span>
+            <input id="searchBox" class="input-group-field" type="text">
+            <div class="input-group-button">
+              <input type="submit" class="button" value="Search">
+            </div>
+          </div>
+        </div>
+        <div class="autocomplete-list-items">
+        </div>
+        <hr />
+      </div>
+      
+      <div class="row">
+        <div class="large-12 medium-12 small-12 large-centered columns">
+          <input type="button" id="play" class="success button" value="Play"></input>
+          <input type="button" id="pause" class="warning button" value="Pause"></input>
+          <input type="button" id="stop" class="alert button" value="Stop"></input>
+          <input type="button" id="load" class="alert button" value="Load next"></input>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-12 medium-12 small-12 large-centered columns">
+          <div id="player"></div>
+        </div>
+      </div>
+    </div>
+
+   	<div class="large-6 medium-12 small-12 columns">
+   		<h5>Song queue</h5>
+   		<table class="stacked hover">
+    		<thead>
+  	     	<tr>
+  					<th>up next...</th>
+  				</tr>
+  			</thead>
+  			<tbody id="songQueue">
+          <tr id="emptyListRow">
+            <td>
+              <div class="media-object">
+                <div class="callout">
+                  <h5>No songs in the queue...</h5>
+                </div>
+              </div>
+            </td>
+          </tr>
+  			</tbody>
+  		</table>
+    </div>
+    
+  </div>
+</div>
+
+<script type="text/javascript">
+
+</script>
