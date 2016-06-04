@@ -162,11 +162,7 @@ router.get('/auth/:id', isAuthenticated, function (req, res) {
 			res.redirect('/jukebox/view/' + jukeboxId);
 		}
 
-<<<<<<< HEAD
 		res.render('jukebox/auth', { jukeboxId: jukeboxId });
-=======
-		res.render('jukebox-auth', { jukeboxId: jukeboxId });
->>>>>>> db6a9127beeb020cc3aefbb2a9b0571dd9390862
 	});
 });
 
@@ -180,11 +176,7 @@ router.post('/auth/:id', isAuthenticated, function (req, res) {
 	var errors = req.validationErrors();
 
 	if (errors) {
-<<<<<<< HEAD
 		res.render('jukebox/auth', {
-=======
-		res.render('jukebox-auth', {
->>>>>>> db6a9127beeb020cc3aefbb2a9b0571dd9390862
 			errors: errors
 		});
 	} else {
@@ -203,11 +195,7 @@ router.post('/auth/:id', isAuthenticated, function (req, res) {
 				Jukebox.comparePassword(password, jukebox.password, function(err, isMatch) {
 					if (err) {
 						req.flash('error_msg', 'Unable to login to the jukebox.');
-<<<<<<< HEAD
-						res.render('jukebox/auth', { jukeboxId: jukeboxId });	
-=======
-						res.render('jukebox-auth', { jukeboxId: jukeboxId });	
->>>>>>> db6a9127beeb020cc3aefbb2a9b0571dd9390862
+						res.render('jukebox/auth', { jukeboxId: jukeboxId });
 					}
 
 					if (isMatch) {
@@ -223,11 +211,7 @@ router.post('/auth/:id', isAuthenticated, function (req, res) {
 						});
 					} else {
 						req.flash('error_msg', 'Incorrect password.');
-<<<<<<< HEAD
-						res.render('jukebox/auth', { jukeboxId: jukeboxId });				
-=======
-						res.render('jukebox-auth', { jukeboxId: jukeboxId });				
->>>>>>> db6a9127beeb020cc3aefbb2a9b0571dd9390862
+						res.render('jukebox/auth', { jukeboxId: jukeboxId });
 					}
 				});
 			}
@@ -265,11 +249,7 @@ router.get('/view/:id', isAuthenticated, function (req, res) {
 							numberOfListeners: 0
 						}
 
-<<<<<<< HEAD
 						res.render('jukebox/view', {'js': ['/js/youtube-app.js', '/js/app.js'], model: viewModel});
-=======
-						res.render('jukebox-view', {'js': ['/js/youtube-app.js', '/js/app.js'], model: viewModel});
->>>>>>> db6a9127beeb020cc3aefbb2a9b0571dd9390862
 					} else {
 						// redirect them to auth
 						req.flash('error_msg', 'You need to enter a password to continue.');
@@ -284,11 +264,7 @@ router.get('/view/:id', isAuthenticated, function (req, res) {
 				numberOfListeners: 0
 			}
 
-<<<<<<< HEAD
 			res.render('jukebox/view', {'js': ['/js/youtube-app.js', '/js/app.js'], model: viewModel});
-=======
-			res.render('jukebox-view', {'js': ['/js/youtube-app.js', '/js/app.js'], model: viewModel});
->>>>>>> db6a9127beeb020cc3aefbb2a9b0571dd9390862
 		}
 	});
 });
