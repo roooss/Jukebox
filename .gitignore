@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 dist/
-public/
+public/**/*.*
  
 # Ignore Visual Studio  Project # 
 ################### 
@@ -75,9 +74,3 @@ journal
 ehthumbs.db 
 Icon? 
 Thumbs.db
-=======
-node_modules
-dist
-.tmp
-bower_components
->>>>>>> db6a9127beeb020cc3aefbb2a9b0571dd9390862
