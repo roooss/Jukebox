@@ -51,8 +51,6 @@ module.exports.createJukebox = function (newJukebox, callback) {
 	}
 }
 
-
-
 module.exports.comparePassword = function(candidatePassword, hash, callback) {
 	bcrypt.compare(candidatePassword, hash, function (err, isMatch) {
 		if (err) {

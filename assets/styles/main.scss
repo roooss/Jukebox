@@ -10,61 +10,30 @@
 
 /* Space out content a bit */
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
-  }
-}
-
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+a {
 }
 
 .container-narrow > hr {
   margin: 30px 0;
 }
 
+#main-menu {
+  ul {
+
+    li {
+    }
+  }
+}
+
 .container {
-  background: #ffffff;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   height: 100%;
   overflow-x: hidden;
   width: 100%;
-}
-
-.sidebar {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  min-height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 180px;
 }
 
 .ui-helper-hidden-accessible{display:none}

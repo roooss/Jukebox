@@ -20,11 +20,10 @@ $( "#searchBox" ).autocomplete({
   minLength: 3,
   appendTo: ".autocomplete-list-items",
   focus: function( event, ui ) {
-    $( "#searchBox" ).val( ui.item.label );
+    $( "#searchBox" ).val('');
       return false;
     },
   select: function( event, ui ) {
-    $( "#searchBox" ).val( ui.item.label );
       // Add the song to the queue
       var htmlOutput = Handlebars.templates["songDetailItem"]( getSongHandlebarContext( ui.item ) );
 
@@ -37,7 +36,7 @@ $( "#searchBox" ).autocomplete({
       // emit songAddedToQueue socket event
       socket.emit('addSongToQueue', ui.item);
       // From the server, save it to db and broadcast to other clients
-
+      $( "#searchBox" ).focus();
       return false;
     }
 })

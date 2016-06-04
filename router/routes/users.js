@@ -29,6 +29,7 @@ router.post('/register', function (req, res) {
 	req.checkBody('dateOfBirth', 'Date of birth is required.').notEmpty();
 
 	req.checkBody('password', 'password is required.').notEmpty();
+	req.checkBody('password','Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet and 1 Number').passwordStrength();
 	req.checkBody('repeatPassword', 'Please repeat your password.').equals(req.body.password);
 
 	var errors = req.validationErrors();

@@ -8,6 +8,7 @@ var youtubeClient = google.youtube({ version: 'v3', auth: authConfig.googleApis.
 
 var User = require('../../models/user');
 var Jukebox = require('../../models/jukebox');
+var AuthEntry = require('../../models/authEntry');
 
 // As with any middleware it is quintessential to call next()
 // if the user is authenticated
@@ -144,6 +145,80 @@ router.post('/song/search', function(req, res) {
 		});
 });
 
+router.get('/auth/:id', isAuthenticated, function (req, res) {
+	var jukeboxId = req.params.id
+
+	Jukebox.findOne({ _id: jukeboxId }, function (err, jukebox) {
+		if (err) {
+			throw err;
+		}
+
+		if (!jukebox) {
+			req.flash('error_msg', 'Unable to find the jukebox.');
+			res.redirect('/jukebox');
+		}
+
+		if (jukebox.password.length == 0) {
+			res.redirect('/jukebox/view/' + jukeboxId);
+		}
+
+		res.render('jukebox-auth', { jukeboxId: jukeboxId });
+	});
+});
+
+router.post('/auth/:id', isAuthenticated, function (req, res) {	
+	var jukeboxId = req.params.id
+
+	// validate the password
+	req.checkBody('password', 'password is required.').notEmpty();
+	var password = req.body.password;
+
+	var errors = req.validationErrors();
+
+	if (errors) {
+		res.render('jukebox-auth', {
+			errors: errors
+		});
+	} else {
+		Jukebox.findOne({ _id: jukeboxId }, function (err, jukebox) {
+			if (err) {
+				throw err;
+			}
+
+			if (!jukebox) {
+				req.flash('error_msg', 'Unable to find the jukebox.');
+				res.redirect('/jukebox');
+			}
+
+			// if the jukebox has a password
+			if (jukebox.password.length > 0) {
+				Jukebox.comparePassword(password, jukebox.password, function(err, isMatch) {
+					if (err) {
+						req.flash('error_msg', 'Unable to login to the jukebox.');
+						res.render('jukebox-auth', { jukeboxId: jukeboxId });	
+					}
+
+					if (isMatch) {
+						// Create an authEntry - get a token and set the cookie
+						AuthEntry.createAuthEntry(jukeboxId, req.user.id, 24, function (err, authEntry) {
+							var token = authEntry.token;
+
+							// set the cookie for this jukebox
+							res.cookie('thing-' + jukeboxId + req.user.id, token, { maxAge: 1800000, httpOnly: true });
+							
+							req.flash('success_msg', 'Welcome.');
+							res.redirect('/jukebox/view/' + jukeboxId);
+						});
+					} else {
+						req.flash('error_msg', 'Incorrect password.');
+						res.render('jukebox-auth', { jukeboxId: jukeboxId });				
+					}
+				});
+			}
+		});
+	}
+});
+
 router.get('/view/:id', isAuthenticated, function (req, res) {
 	var jukeboxId = req.params.id
 
@@ -157,13 +232,40 @@ router.get('/view/:id', isAuthenticated, function (req, res) {
 			res.redirect('/jukebox');
 		}
 
-		var viewModel = {
-			name: jukebox.name,
-			description: jukebox.description,
-			numberOfListeners: 0
-		}
+		// if the jukebox has a password
+		if (jukebox.password.length > 0) {
+			if (!req.cookies['thing-' + jukeboxId + req.user.id]) { // then we need to check for the jukebox's auth cookie
+				// if there is no valid auth cookie we send them to the jukebox auth page
+				req.flash('error_msg', 'You need to enter a password to continue.');
+				res.redirect('/jukebox/auth/' + jukeboxId);
+			} else {
+				// we need to verify the token is real
+				AuthEntry.verifyAuthToken(req.cookies['thing-' + jukeboxId + req.user.id], jukeboxId, req.user.id, function(result) {
+					if (result) {
+						// if there is a valid auth cookie then we continue
+						var viewModel = {
+							name: jukebox.name,
+							description: jukebox.description,
+							numberOfListeners: 0
+						}
 
-		res.render('jukebox-view', {'js': ['/js/youtube-app.js', '/js/app.js'], model: viewModel});
+						res.render('jukebox-view', {'js': ['/js/youtube-app.js', '/js/app.js'], model: viewModel});
+					} else {
+						// redirect them to auth
+						req.flash('error_msg', 'You need to enter a password to continue.');
+						res.redirect('/jukebox/auth/' + jukeboxId);
+					}
+				});
+			}
+		} else {
+			var viewModel = {
+				name: jukebox.name,
+				description: jukebox.description,
+				numberOfListeners: 0
+			}
+
+			res.render('jukebox-view', {'js': ['/js/youtube-app.js', '/js/app.js'], model: viewModel});
+		}
 	});
 });
 

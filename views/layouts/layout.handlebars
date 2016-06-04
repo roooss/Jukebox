@@ -6,51 +6,48 @@
 
 	<title>This is the site title.</title>
 
+	<link rel="stylesheet" href="/css/normalize.css">
 	<link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
-	<div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
-  		<button class="menu-icon" type="button" data-toggle></button>
-  		<div class="title-bar-title">Jukebox</div>
-	</div>
-	<div class="top-bar" id="main-menu">
-		
-		<div class="top-bar-left">
-	    	<ul class="dropdown menu" data-dropdown-menu>
-	    	<li class="menu-text">Jukebox</li>
-	    	</ul>
+	<div class="top-menu">
+		<div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
+	  		<button class="menu-icon" type="button" data-toggle></button>
+	  		<div class="title-bar-title">Jukebox</div>
 		</div>
-		<div class="top-bar-right">
-			<ul class="large-left menu vertical medium-horizontal expanded" data-responsive-menu="drilldown medium-dropdown">
+		<div class="top-bar" id="main-menu">
+			
+			<div class="top-bar-left">
+		    	<ul class="dropdown menu horizontal medium-horizontal" data-responsive-menu="drilldown medium-dropdown" data-dropdown-menu>
+		    	<li class="menu-text">Jukebox</li>
 				<li><a href="/">home</a></li>
 				{{#if user}}
-		    		<li><a href="/jukebox">find jukebox</a></li>
-		    		<li><a href="/jukebox/create">create jukebox</a></li>
-		    	{{else}}
-	    		{{/if}}
-			</ul>
+			    	<li><a href="/jukebox">find jukebox</a></li>
+			    	<li><a href="/jukebox/create">create jukebox</a></li>
+			    {{else}}
+		    	{{/if}}
+				</ul>
+			</div>
 
-			<ul class="large-right menu vertical medium-horizontal expanded" data-responsive-menu="drilldown medium-dropdown">
-				{{#if user}}
-		    		<li class="has-submenu">
-			    		<a href="#">username</a>
-			    		<ul class="submenu menu vertical" data-submenu>
-			    			<li><a href="/users/account">account</a></li>
-			    			<li><a href="/users/logout">logout</a></li>
-			    		</ul>
-		    		</li>
-		    	{{else}}
-		    		<li><a href="/users/register">register</a></li>
-		    		<li><a href="/users/login">login</a></li>
-	    		{{/if}}
-			</ul>
-	  	</div>
+			<div class="top-bar-right">
+				<ul class="dropdown menu horizontal medium-horizontal" data-responsive-menu="drilldown medium-dropdown" data-dropdown-menu>
+					{{#if user}}
+			    		<li class="has-submenu">
+				    		<a href="#">username</a>
+				    		<ul class="submenu menu vertical" data-submenu>
+				    			<li><a href="/users/account">account</a></li>
+				    			<li><a href="/users/logout">logout</a></li>
+				    		</ul>
+			    		</li>
+			    	{{else}}
+			    		<li><a href="/users/register">register</a></li>
+			    		<li><a href="/users/login">login</a></li>
+		    		{{/if}}
+				</ul>
+		  	</div>
+		</div>
 	</div>
-	
-	<div>
-
-    	<hr />
-
+	<div class="container">
     	{{#if success_msg}}
     		<div class="row">
 	        	<div class="large-12 medium-12 small-12 large-centered columns">

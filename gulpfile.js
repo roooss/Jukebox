@@ -12,7 +12,13 @@ var node;
 
 // Styles
 gulp.task('styles', function () {
-    return gulp.src([
+
+    gulp.src([
+        './bower_components/normalize-scss/normalize.css'
+    ])
+    .pipe(gulp.dest('./public/css'));
+
+    gulp.src([
         './assets/styles/main.scss'
     ])
     .pipe(concat('app.css'))
@@ -20,6 +26,8 @@ gulp.task('styles', function () {
     .pipe(cssnano())
     .pipe(gulp.dest('./public/css'))
     .pipe(browserSync.stream());
+
+    return gulp;
 });
 
 // Scripts
