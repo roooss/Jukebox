@@ -45,19 +45,20 @@
 		          <div class="row">
 		            <div class="large-4 medium-8 small-10 small-centered columns">
 		              <label>Date of birth</label>
-		              <input id="dateOfBirth" name="dateOfBirth" type="date" value="{{model.dateOfBirth}}" />
+		              <input id="dateOfBirth" name="dateOfBirth" type="text" class="span2" value="{{#formattedDate model.dateOfBirth}}{{/formattedDate}}" autocomplete="off">
+		              <!--<input id="dateOfBirth" name="dateOfBirth" type="date" value="{{model.dateOfBirth}}" />-->
 		            </div>
 		          </div>
 		          <div class="row">
 		            <div class="large-4 medium-8 small-10 small-centered columns">
 		              <label>Password</label>
-		              <input id="password" name="password" type="password" />
+		              <input id="password" name="password" type="password" autocomplete="off" />
 		            </div>
 		          </div>
 		          <div class="row">
 		            <div class="large-4 medium-8 small-10 small-centered columns">
 		              <label>Repeat password</label>
-		              <input id="repeatPassword" name="repeatPassword" type="password" />
+		              <input id="repeatPassword" name="repeatPassword" type="password" autocomplete="off" />
 		            </div>
 		          </div>
 		          <div class="row">

@@ -249,7 +249,7 @@ router.get('/view/:id', isAuthenticated, function (req, res) {
 							numberOfListeners: 0
 						}
 
-						res.render('jukebox/view', {'js': ['/js/youtube-app.js', '/js/app.js'], model: viewModel});
+						res.render('jukebox/view', {'js': ['/js/youtube-app.js', '/js/app.js', '/js/jukebox-context-menu.js'], model: viewModel});
 					} else {
 						// redirect them to auth
 						req.flash('error_msg', 'You need to enter a password to continue.');
@@ -264,7 +264,7 @@ router.get('/view/:id', isAuthenticated, function (req, res) {
 				numberOfListeners: 0
 			}
 
-			res.render('jukebox/view', {'js': ['/js/youtube-app.js', '/js/app.js'], model: viewModel});
+			res.render('jukebox/view', {'js': ['/js/youtube-app.js', '/js/app.js', '/js/jukebox-context-menu.js'], model: viewModel});
 		}
 	});
 });

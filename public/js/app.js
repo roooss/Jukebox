@@ -28,7 +28,7 @@ $( "#searchBox" ).autocomplete({
       var htmlOutput = Handlebars.templates["songDetailItem"]( getSongHandlebarContext( ui.item ) );
 
       $('#emptyListRow').remove();
-      $('#songQueue').append('<tr><td>' + htmlOutput + '</td></tr>')
+      $('#songQueue').append('<tr class="songDetailItemRow"><td>' + htmlOutput + '</td></tr>');
 
       var href = location.href;
       var jukeboxId = href.substr(href.lastIndexOf('/') + 1);
@@ -42,7 +42,7 @@ $( "#searchBox" ).autocomplete({
 })
 .autocomplete( "instance" )._renderItem = function( ul, item ) {
     var tempString = $( "<li>" )
-      .append( Handlebars.templates["songDetailItem"]( getSongHandlebarContext( item ) ) )
+      .append( Handlebars.templates["songSearchResultItem"]( getSongHandlebarContext( item ) ) )
       .appendTo( ul );
 
     return tempString;
@@ -75,8 +75,9 @@ socket.on('connect', function() {
 
         $.each(songQueue, function () {
           var htmlOutput = Handlebars.templates["songDetailItem"]( getSongHandlebarContext( this ) );
-
-          $('#songQueue').append('<tr><td>' + htmlOutput + '</td></tr>')
+          $('#songQueue').append('<tr  class="songDetailItemRow"><td>' + htmlOutput + '</td></tr>');
+          // $('#songQueue').append('<tr data-closable="slide-out-right"><td><button class="button" type="button"><span class="show-for-sr">Close</span><span aria-hidden="true"><i class="fi-x"></i></span></button>' + htmlOutput + '</td></tr>');
+          // $('#songQueue').append('<tr><td>' + htmlOutput + '</td></tr>');
         });
       }
     });
@@ -86,5 +87,5 @@ socket.on('addSongToQueue', function(song) {
   var htmlOutput = Handlebars.templates["songDetailItem"]( getSongHandlebarContext( song ) );
 
   $('#emptyListRow').remove();
-  $('#songQueue').append('<tr><td>' + htmlOutput + '</td></tr>')
+  $('#songQueue').append('<tr  class="songDetailItemRow"><td>' + htmlOutput + '</td></tr>');
 });

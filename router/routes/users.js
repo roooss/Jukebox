@@ -21,8 +21,25 @@ var isAuthenticated = function (req, res, next) {
   res.redirect('/users/login');
 }
 
+var formatDateString = function(date) {
+    var d = new Date(date || Date.now());
+    var month = '' + (d.getMonth() + 1);
+    var day = '' + d.getDate();
+    var year = d.getFullYear();
+
+    if (month.length < 2) {
+    	month = '0' + month;
+    }
+    		
+	if (day.length < 2) {
+		day = '0' + day;
+	}
+
+    return [year, month, day].join('-');
+}
+
 router.get('/register', function (req, res) {
-	res.render('register');
+	res.render('register', {'js': ['/js/user-form.js']});
 });
 
 router.post('/register', function (req, res) {
@@ -32,7 +49,7 @@ router.post('/register', function (req, res) {
 	var gender = req.body.gender;
 	var password = req.body.password;
 	var repeatPassword = req.body.repeatPassword;
-	var dateOfBirth = req.body.dateOfBirth;
+	var dateOfBirth = new Date(formatDateString(req.body.dateOfBirth));
 
 	req.checkBody('emailAddress', 'Email address is required.').notEmpty();
 	req.checkBody('emailAddress', 'Email address is not valid.').isEmail();
@@ -48,6 +65,7 @@ router.post('/register', function (req, res) {
 
 	if (errors) {
 		res.render('register', {
+			'js': ['/js/user-form.js'],
 			errors: errors
 		});
 	} else {
@@ -66,8 +84,6 @@ router.post('/register', function (req, res) {
 				console.log(err);
 				throw err;
 			}
-
-			console.log(user);	
 		});
 
 		req.flash('success_msg', 'You are now registered and can log in.');
@@ -94,7 +110,7 @@ router.get('/account', isAuthenticated, function (req, res) {
 				dateOfBirth: user.dateOfBirth
 			};
 
-			res.render('users/edit', { model: model });
+			res.render('users/edit', { 'js': ['/js/user-form.js'], model: model });
 		});
 });
 
@@ -105,7 +121,7 @@ router.post('/account', isAuthenticated, function (req, res) {
 	var gender = req.body.gender;
 	var password = req.body.password;
 	var repeatPassword = req.body.repeatPassword;
-	var dateOfBirth = req.body.dateOfBirth;
+	var dateOfBirth = new Date(formatDateString(req.body.dateOfBirth));
 
 	req.checkBody('emailAddress', 'Email address is required.').notEmpty();
 	req.checkBody('emailAddress', 'Email address is not valid.').isEmail();
@@ -118,13 +134,28 @@ router.post('/account', isAuthenticated, function (req, res) {
 		req.checkBody('repeatPassword', 'Please repeat your password.').equals(req.body.password);
 	}
 
-	User.findOne({ _id: req.user.id }, function (err, user) {
+	var model = {
+		emailAddress: emailAddress,
+		firstName: firstName,
+		lastName: lastName,
+		gender: gender,
+		dateOfBirth: dateOfBirth
+	};
+
+	var errors = req.validationErrors();
+
+	if (errors) {
+		res.render('users/edit', { 'js': ['/js/user-form.js'], model: model, errors: errors });
+	} else {
+		User.findOne({ _id: req.user.id }, function (err, user) {
 			if (err) {
-				res.redirect('/users/login', { message: 'Something bad happened.' });
+				req.flash('error_msg', 'Something bad happened.');
+				res.redirect('/users/login');
 			}
 
 			if (!user) {
-				res.redirect('/users/login', { message: 'User not found.' });
+				req.flash('error_msg', 'User not found.');
+				res.redirect('/users/login');
 			}
 
 			user.emailAddress = emailAddress;
@@ -135,24 +166,19 @@ router.post('/account', isAuthenticated, function (req, res) {
 
 			User.updateAccountInfo(user, password, function (err, user) {
 				if (err) {
-					res.redirect('/users/login', { message: 'Something bad happened.' });
+					req.flash('error_msg', 'Something bad happened.');
+					res.redirect('/users/login');
 				}
 
 				if (!user) {
-					res.redirect('/users/login', { message: 'User not found.' });
+					req.flash('error_msg', 'User not found.');
+					res.redirect('/users/login');
 				}
 
-				var model = {
-					emailAddress: user.emailAddress,
-					firstName: user.firstName,
-					lastName: user.lastName,
-					gender: user.gender,
-					dateOfBirth: user.dateOfBirth
-				};
-
-				res.render('users/edit', { model: model, success_msg: 'Saved' });
+				res.render('users/edit', { 'js': ['/js/user-form.js'], model: model, success_msg: 'Saved' });
 			});
 		});
+	}
 });
 
 router.get('/login', function (req, res) {
@@ -164,11 +190,13 @@ router.post('/login',
 	function (req, res) {
 		User.findOne({ _id: req.user.id }, function (err, user) {
 			if (err) {
-				res.redirect('/users/login', { message: 'Something bad happened.' });
+				req.flash('error_msg', 'Something bad happened.');
+				res.redirect('/users/login');
 			}
 
 			if (!user) {
-				res.redirect('/users/login', { message: 'User not found.' });
+				req.flash('error_msg', 'User not found.');
+				res.redirect('/users/login');
 			}
 
 			res.session.user = user;
