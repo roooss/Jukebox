@@ -75,6 +75,19 @@ module.exports.comparePassword = function(candidatePassword, hash, callback) {
 	});
 }
 
+module.exports.updateAccountInfo = function(user, password, callback) {
+	if (password.length > 0) {
+		bcrypt.genSalt(10, function (err, salt) {
+			bcrypt.hash(password, salt, function (err, hash) {
+				user.password = hash;
+				user.save(callback);
+			});
+		});
+	} else {
+		user.save(callback);
+	}
+}
+
 module.exports.addJukeboxToUser = function(user, newJukebox, callback) {
 	user.jukeboxes.push(newJukebox._id);
 	user.save(callback);

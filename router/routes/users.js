@@ -9,6 +9,18 @@ var authConfig = require('../../config/auth');
 
 var User = require('../../models/user');
 
+// As with any middleware it is quintessential to call next()
+// if the user is authenticated
+var isAuthenticated = function (req, res, next) {
+  if (req.isAuthenticated()) {
+  	return next();
+  }
+
+  req.flash('error_msg', 'You are not logged in.');
+
+  res.redirect('/users/login');
+}
+
 router.get('/register', function (req, res) {
 	res.render('register');
 });
@@ -29,7 +41,11 @@ router.post('/register', function (req, res) {
 	req.checkBody('dateOfBirth', 'Date of birth is required.').notEmpty();
 
 	req.checkBody('password', 'password is required.').notEmpty();
+<<<<<<< HEAD
+	req.checkBody('password','Password must be Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet and 1 Number').passwordStrength();
+=======
 	req.checkBody('password','Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet and 1 Number').passwordStrength();
+>>>>>>> db6a9127beeb020cc3aefbb2a9b0571dd9390862
 	req.checkBody('repeatPassword', 'Please repeat your password.').equals(req.body.password);
 
 	var errors = req.validationErrors();
@@ -64,6 +80,85 @@ router.post('/register', function (req, res) {
 	}
 });
 
+router.get('/account', isAuthenticated, function (req, res) {
+	User.findOne({ _id: req.user.id }, function (err, user) {
+			if (err) {
+				res.redirect('/users/login', { message: 'Something bad happened.' });
+			}
+
+			if (!user) {
+				res.redirect('/users/login', { message: 'User not found.' });
+			}
+
+			var model = {
+				emailAddress: user.emailAddress,
+				firstName: user.firstName,
+				lastName: user.lastName,
+				gender: user.gender,
+				dateOfBirth: user.dateOfBirth
+			};
+
+			res.render('users/edit', { model: model });
+		});
+});
+
+router.post('/account', isAuthenticated, function (req, res) {
+	var firstName = req.body.firstName;
+	var lastName = req.body.lastName;
+	var emailAddress = req.body.emailAddress;
+	var gender = req.body.gender;
+	var password = req.body.password;
+	var repeatPassword = req.body.repeatPassword;
+	var dateOfBirth = req.body.dateOfBirth;
+
+	req.checkBody('emailAddress', 'Email address is required.').notEmpty();
+	req.checkBody('emailAddress', 'Email address is not valid.').isEmail();
+	req.checkBody('firstName', 'First name is required.').notEmpty();
+	req.checkBody('lastName', 'Last name is required.').notEmpty();
+	req.checkBody('dateOfBirth', 'Date of birth is required.').notEmpty();
+
+	if (password.length > 0) {
+		req.checkBody('password','Password must be Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet and 1 Number').passwordStrength();
+		req.checkBody('repeatPassword', 'Please repeat your password.').equals(req.body.password);
+	}
+
+	User.findOne({ _id: req.user.id }, function (err, user) {
+			if (err) {
+				res.redirect('/users/login', { message: 'Something bad happened.' });
+			}
+
+			if (!user) {
+				res.redirect('/users/login', { message: 'User not found.' });
+			}
+
+			user.emailAddress = emailAddress;
+			user.firstName = firstName;
+			user.lastName = lastName;
+			user.gender = gender;
+			user.dateOfBirth = dateOfBirth;
+
+			User.updateAccountInfo(user, password, function (err, user) {
+				if (err) {
+					res.redirect('/users/login', { message: 'Something bad happened.' });
+				}
+
+				if (!user) {
+					res.redirect('/users/login', { message: 'User not found.' });
+				}
+
+				var model = {
+					emailAddress: user.emailAddress,
+					firstName: user.firstName,
+					lastName: user.lastName,
+					gender: user.gender,
+					dateOfBirth: user.dateOfBirth
+				};
+
+				res.render('users/edit', { model: model, success_msg: 'Saved' });
+			});
+		});
+});
+
 router.get('/login', function (req, res) {
 	res.render('login');
 });
@@ -71,15 +166,28 @@ router.get('/login', function (req, res) {
 router.post('/login',
 	passport.authenticate('local', { successRedirect: '/', failureRedirect: '/users/login', failureFlash: true }),
 	function (req, res) {
-		res.redirect('/');	
+		User.findOne({ _id: req.user.id }, function (err, user) {
+			if (err) {
+				res.redirect('/users/login', { message: 'Something bad happened.' });
+			}
+
+			if (!user) {
+				res.redirect('/users/login', { message: 'User not found.' });
+			}
+
+			res.session.user = user;
+
+			res.redirect('/');	
+		});
 	});
 
 router.get('/logout', function (req, res) {
 	req.logout();
 
 	req.flash('success_msg', 'Logged out.');
+	req.session.destroy();
 
-	res.redirect('/users/login');
+	res.redirect('/');
 });
 
 router.get('/facebook', passport.authenticate('facebook'));

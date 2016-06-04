@@ -1,0 +1,83 @@
+    <div class="row">
+
+    	<div class="large-12 medium-12 small-12 large-centered columns">
+        	<h5>Modify account</h5>
+        </div>        
+        {{#if errors}}
+        	<div class="large-12 medium-12 small-12 large-centered columns">
+        		<div class="alert callout">
+        			<ul>
+		        		{{#each errors}}
+			        	    <li class="alert">{{msg}}</li>
+			        	{{/each}}
+		        	</ul>
+		        </div>
+        	</div>
+    	{{/if}}
+    	<form action="/users/account" method="POST">
+		          <div class="row">
+		            <div class="large-4 medium-8 small-10 small-centered columns">
+		              <label>Email Address</label>
+		              <input id="emailAddress" name="emailAddress" type="email" placeholder="name@domain.com" value="{{model.emailAddress}}" />
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="large-4 medium-8 small-10 small-centered columns">
+		              <label>First Name</label>
+		              <input id="firstName" name="firstName" type="text" placeholder="Dave" value="{{model.firstName}}" />
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="large-4 medium-8 small-10 small-centered columns">
+		              <label>Last Name</label>
+		              <input id="lastName" name="lastName" type="text" placeholder="Smith" value="{{model.lastName}}" />
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="large-4 medium-8 small-10 small-centered columns">
+		              <label>Gender</label>
+		              <select id="gender" name="gender">
+		                <option value="0"{{#ifCond model.gender '==' 0}} selected="selected" {{/ifCond}}>Male</option>
+		                <option value="1"{{#ifCond model.gender '==' 1}} selected="selected" {{/ifCond}}>Female</option>
+		              </select>
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="large-4 medium-8 small-10 small-centered columns">
+		              <label>Date of birth</label>
+		              <input id="dateOfBirth" name="dateOfBirth" type="date" value="{{model.dateOfBirth}}" />
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="large-4 medium-8 small-10 small-centered columns">
+		              <label>Password</label>
+		              <input id="password" name="password" type="password" />
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="large-4 medium-8 small-10 small-centered columns">
+		              <label>Repeat password</label>
+		              <input id="repeatPassword" name="repeatPassword" type="password" />
+		            </div>
+		          </div>
+		          <div class="row">
+		            <div class="large-4 medium-8 small-10 small-centered columns">
+		            	<div class="expanded stacked-for-small button-group">
+  							<button type="submit" class="success button">Save</button>
+						</div>
+		            </div>
+		          </div>
+		          <div class="row">
+        			<div class="large-4 medium-8 small-10 small-centered columns">
+        				<h6>Associate a social network account here...</h6>
+		       				<div class="stacked button-group centered">
+			  				 	<a href="/users/facebook" class="button">Facebook</a>
+			  					<a href="/users/spotify" class="success button">Spotify</a>
+			  					<a href="#" class="alert button">Google+</a>
+							</div>
+	        		</div>
+	    		  </div>
+		        </div>
+	        </div>
+        </form>
+    </div>
