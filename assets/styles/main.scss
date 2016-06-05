@@ -31,8 +31,7 @@ a {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  height: 100%;
-  width: 100%;
+  margin-top: 20px;
 }
 
 .ui-helper-hidden-accessible{display:none}
@@ -48,11 +47,10 @@ a {
   }
 }
 
-#songQueue {
-  width: 100%;
+.songList {
   max-height: 400px;
   overflow-x: hidden;
-  overflow-y: scroll; 
+  overflow-y: auto; 
 }
 
 .context-menu {

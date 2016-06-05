@@ -1,6 +1,6 @@
 <div class="row">
   <div class="large-6 medium-10 small-10 columns">
-    <h5>{{model.name}}</h5>
+    <h2>{{model.name}}</h2>
     <p>{{model.description}}</p>
     
   </div>
@@ -11,13 +11,11 @@
 <div class="row">
   <hr />
 
-
   <div clas="row">
 
     <div class="large-12 medium-10 small-10 small-centered columns">
       <div class="row">
         <h5>Song search</h5>
-        <hr />
         <div class="large-12 medium-12 small-12 large-centered columns">
           <div class="input-group ui-widget">
             <span class="input-group-label">$</span>
@@ -54,14 +52,26 @@
     </div>
    	<div class="large-8 medium-8 small-10 columns">
   	  <div class="row">
-  		  <h3>up next...</h3>
-  		</div>
-  		
-  		<div id="songQueue" class="row">
-        <div id="emptyListRow" class="row">
-          <div class="media-object">
-            <div class="callout">
-              <h5>No songs in the queue...</h5>
+    		<div class="button-group expanded">
+          <a href="#" class="button songTabButton">Songs Queued</a>
+          <a href="#" class="hollow button songTabButton">Songs played</a>
+        </div>
+  		    		
+    		<div id="songQueue" class="row songList">
+          <div id="emptyListRow" class="row">
+            <div class="media-object">
+              <div class="media-object-section">
+                  <h5>No songs in the queue...</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="songHistory" class="row hide songList">
+          <div id="emptyListRow" class="row">
+            <div class="media-object">
+              <div class="media-object-section">
+                  <h5>No songs have been played...</h5>
+              </div>
             </div>
           </div>
         </div>
@@ -79,7 +89,16 @@
       <a href="#" class="context-menu__link" data-action="PlayNext">Play Next</a>
     </li>
     <li class="context-menu__item">
-      <a href="#" class="context-menu__link" data-action="Remove">Remove song</a>
+      <a href="#" class="context-menu__link" data-action="MoveUp">Move Up</a>
+    </li>
+    <li class="context-menu__item">
+      <a href="#" class="context-menu__link" data-action="MoveDown">Move Down</a>
+    </li>
+    <li class="context-menu__item">
+      <a href="#" class="context-menu__link" data-action="LocalRemove">Remove song (Local)</a>
+    </li>
+    <li class="context-menu__item">
+      <a href="#" class="context-menu__link" data-action="EveryoneRemove">Remove song (Everyone)</a>
     </li>
   </ul>
 </div>

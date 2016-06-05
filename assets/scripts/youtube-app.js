@@ -38,7 +38,7 @@
   function onPlayerStateChange(event) {
     if (event.data == YT.PlayerState.ENDED) {
       // Play queued video
-      loadVideo();
+      loadVideo(false);
     }
   }
 
@@ -52,34 +52,31 @@
 
   function playVideo() {
     if(player.getVideoUrl().indexOf('?') == -1) {
-        loadVideo();
+        loadVideo(true);
     } else {
       player.playVideo();
     }
   }
 
-  function loadVideo() {
-    // Go get the cookie holding the index of next song
-    var index = 0;
-
-    if ($.cookie('songPlayingIndex')) {
-      index = $.cookie('songPlayingIndex');
-    }
-
+  function loadVideo(isFirstLoad) {
     // Set it if not exists
     //use index to get hidden input of next song
-    var soungCount = $('#songQueue > tr #videoId').length;
+    var soungCount = $('#songQueue > .songDetailItemRow #videoId').length;
 
-    if (index >= soungCount) {
-      index = 0;
-    }
+    if (soungCount > 0) {
+      if (!isFirstLoad) {
+        var lastPlayed = $('#songQueue > .songDetailItemRow')[0];
+        $('#songHistory').append(lastPlayed);
+        $('#songQueue > .songDetailItemRow').splice(0, 1);
 
-    var hiddenInput = $('#songQueue > tr #videoId')[index].value;
+        // broadcast from server (move song to history)
+        // if the client isn't playing music then update it
+      }
 
-    index++;
-    $.cookie('songPlayingIndex', index);
-
-    player.loadVideoById(hiddenInput, 1);
+      var hiddenInput = $('#songQueue > .songDetailItemRow #videoId')[0].value;
+      player.loadVideoById(hiddenInput, 1);
+      // set current playing song for jukebox server side
+    }    
   }
 
 $(document).ready(function () {
@@ -101,6 +98,6 @@ $(document).ready(function () {
 
     $('#load').on('click', function(e) {
       e.preventDefault();
-      loadVideo();
+      loadVideo(false);
     });
   });

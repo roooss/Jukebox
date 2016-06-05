@@ -62,7 +62,7 @@ gulp.task('build', ['styles', 'scripts']);
 gulp.task('serve', ['build', 'server'], function() {
 
     browserSync.init({
-        proxy: "localhost:3000",
+        proxy: "localhost:1337",
         port: "7000"
     });
 

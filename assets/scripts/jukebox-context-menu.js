@@ -219,6 +219,28 @@
   function menuItemListener( link ) {
     console.log( "Task ID - " + taskItemInContext.getAttribute("data-id") + ", Task action - " + link.getAttribute("data-action"));
     toggleMenuOff();
+
+    switch (link.getAttribute("data-action")) {
+      case 'PlayNow':
+        // Do something
+        break;
+      case 'PlayNext':
+        // Do something
+        break;
+      case 'MoveUp':
+        // Do something
+        break;
+      case 'MoveDown':
+        // Do something
+        break;
+      case 'LocalRemove':
+        // Do something
+        break;
+      case 'EveryoneRemove':
+        // Do something
+        break;
+      default:
+    }
   }
 
   /**

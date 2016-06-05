@@ -28,7 +28,7 @@ $( "#searchBox" ).autocomplete({
       var htmlOutput = Handlebars.templates["songDetailItem"]( getSongHandlebarContext( ui.item ) );
 
       $('#emptyListRow').remove();
-      $('#songQueue').append('<tr class="songDetailItemRow"><td>' + htmlOutput + '</td></tr>');
+      $('#songQueue').append('<div class="songDetailItemRow">' + htmlOutput + '</div>');
 
       var href = location.href;
       var jukeboxId = href.substr(href.lastIndexOf('/') + 1);
@@ -63,11 +63,10 @@ var getSongHandlebarContext = function (item) {
 }
 
 socket.on('connect', function() {
-  console.log('a user connected');
   var href = location.href;
   var jukeboxId = href.substr(href.lastIndexOf('/') + 1);
-
-  socket.emit('joinJukebox', jukeboxId);
+  var userId = '';
+  socket.emit('joinJukebox', jukeboxId, userId);
 
   socket.emit('askForSongQueue', null, function(songQueue) {
       if (songQueue && songQueue.length > 0) {
@@ -75,10 +74,12 @@ socket.on('connect', function() {
 
         $.each(songQueue, function () {
           var htmlOutput = Handlebars.templates["songDetailItem"]( getSongHandlebarContext( this ) );
-          $('#songQueue').append('<tr  class="songDetailItemRow"><td>' + htmlOutput + '</td></tr>');
-          // $('#songQueue').append('<tr data-closable="slide-out-right"><td><button class="button" type="button"><span class="show-for-sr">Close</span><span aria-hidden="true"><i class="fi-x"></i></span></button>' + htmlOutput + '</td></tr>');
-          // $('#songQueue').append('<tr><td>' + htmlOutput + '</td></tr>');
+          $('#songQueue').append('<div class="songDetailItemRow">' + htmlOutput + '</div>');
         });
+
+        // get current song playing
+        // if there is one
+        // move all previous items to songHistory
       }
     });
 });
@@ -88,4 +89,10 @@ socket.on('addSongToQueue', function(song) {
 
   $('#emptyListRow').remove();
   $('#songQueue').append('<tr  class="songDetailItemRow"><td>' + htmlOutput + '</td></tr>');
+});
+
+$('.songTabButton').on('click', function (e) {
+  e.preventDefault();
+  $('.songTabButton').toggleClass('hollow');
+  $('.songList').toggleClass('hide');
 });
