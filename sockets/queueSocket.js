@@ -16,7 +16,7 @@ module.exports = function (io) {
 			socket.join(jukeboxId);
 
 			// TODO: Add user to the listeners collection in the jukebox
-			
+
 			var connectedUsersList = connectedSockets.map(function (item) {
 				return {
 					id: item.id,
@@ -44,7 +44,7 @@ module.exports = function (io) {
 				songInfo.duration = song.duration;
 				songInfo.createdOn = Date.now();
 				songInfo.parentJukebox = socket.jukeboxId;
-				// songInfo.createdBy = req.user.id;
+				songInfo.createdBy = song.addedBy.id;
 
 				songInfo.save(function (err, res) {
 					if (err) {
@@ -85,6 +85,7 @@ module.exports = function (io) {
 	        						label: item.label,
 	        						description: item.description,
 	        						duration: item.duration
+	        						addedBy: item.createdBy
 								}
 							});
 

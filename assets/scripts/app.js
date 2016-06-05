@@ -27,7 +27,7 @@ $( "#searchBox" ).autocomplete({
       // Add the song to the queue
       var htmlOutput = Handlebars.templates["songDetailItem"]( getSongHandlebarContext( ui.item ) );
 
-      $('#emptyListRow').remove();
+      $('#songQueue #emptyListRow').remove();
       $('#songQueue').append('<div class="songDetailItemRow">' + htmlOutput + '</div>');
 
       var href = location.href;
@@ -56,7 +56,8 @@ var getSongHandlebarContext = function (item) {
         thumbnail: item.thumbnail,
         label: item.label,
         description: item.description,
-        duration: item.duration
+        duration: item.duration,
+        addedBy: item.addedBy
       };
 
       return handlebarContext;

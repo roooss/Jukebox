@@ -125,7 +125,8 @@ router.post('/song/search', function(req, res) {
 										value: data.items[foo].id.videoId,
 										label: data.items[foo].snippet.title,
 										description: data.items[foo].snippet.description,
-										thumbnail: data.items[foo].snippet.thumbnails.default.url
+										thumbnail: data.items[foo].snippet.thumbnails.default.url,
+										addedBy: req.session.user
 									};
 
 									// returnItem.duration = convertTime(details.items[0].contentDetails.duration);

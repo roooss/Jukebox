@@ -66,6 +66,7 @@
     if (soungCount > 0) {
       if (!isFirstLoad) {
         var lastPlayed = $('#songQueue > .songDetailItemRow')[0];
+        $('#songHistory #emptyListRow').remove();
         $('#songHistory').append(lastPlayed);
         $('#songQueue > .songDetailItemRow').splice(0, 1);
 
